@@ -4,18 +4,51 @@ var queryUrl = "https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/all_we
 // Perform a GET request to the query URL
 d3.json(queryUrl, function(response) {
     
-    // console.log(response.features[0].properties);
-    // console.log(response.features[0].geometry.coordinates[0]);
-    var earthquakeArr = [];
-    var earthquakelocation = [];
+    // var earthquakeArr = [];
+    // var earthquakelocation = [];
+    console.log(response.features[1]);
 
-    for (var i = 0; i < response.features.length; i++)
-            earthquakelocation.push([response.features[i].geometry.coordinates[1], response.features[i].geometry.coordinates[0]]);
-    console.log(earthquakelocation);
-    for (var i = 0; i < earthquakelocation.length; i++)
+    for (var i = 0; i < response.features.length; i++){
+    //         earthquakelocation.push([response.features[i].geometry.coordinates[1], response.features[i].geometry.coordinates[0]]);
+    // console.log(earthquakelocation);
+    // for (var i = 0; i < earthquakelocation.length; i++)
+        
+        var color = "";
+        if (response.features[i].properties.mag <= .5){
+            color = "white";
+        }
+        else if (response.features[i].properties.mag <= 1.0){
+            color = "#FFFF00"
+        }
+        else if (response.features[i].properties.mag <= 1.5){
+            color = "#FFCC00"
+        }
+        else if (response.features[i].properties.mag <= 2.0){
+            color = "#FF9900"
+        }
+        else if (response.features[i].properties.mag <= 2.5){
+            color = "#FF6600"
+        }
+        else if (response.features[i].properties.mag <= 3.0){
+            color = "#FF3300"
+        }
+        else {
+            color = "#FF0000"
+        }
+        var USGSlink = response.features[i].properties.url
+        
+                L.circle([response.features[i].geometry.coordinates[1], response.features[i].geometry.coordinates[0]],{
+                        color : color,
+                        fillOpacity: 1.0,
+                        radius : response.features[i].properties.mag * 25000,
+                        fillColor : color
 
-                L.circle(earthquakelocation[i]).addTo(myMap);
-    
+                }).bindPopup("<h1>Place: " + response.features[i].properties.place + 
+                "</h1> <hr> <h3>Time: " + new Date(response.features[i].properties.time) + "</h3><h3>Magnitude: " + response.features[i].properties.mag + " " + 
+                response.features[i].properties.magType + "</h3> <h3>Depth: " + 
+                response.features[i].geometry.coordinates[2] + " km</h3><h6>For more information go to: " + response.features[i].properties.url+ "</h6>")
+                .addTo(myMap);
+    }
             
   });
 
