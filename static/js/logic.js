@@ -69,10 +69,10 @@ d3.json(queryUrl, function(response) {
         
         for (var i = 0; i < grades.length; i++) {
             div.innerHTML +=
-                '<li style="background-color:' + getColor(grades[i + 1]) + '"></li> ' +
+                '<i style="background-color:' + getColor(grades[i + 1]) + '"></i> ' +
                 grades[i] + (grades[i + 1] ? '&ndash;' + grades[i + 1] + '<br>' : '+');
         }
-        // div.innerHTML = labels.join('<br>');
+        // div.innerHTML = labels.join(div.innerHTML);
         return div;
     
     };
