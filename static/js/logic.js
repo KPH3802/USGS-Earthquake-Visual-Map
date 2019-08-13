@@ -65,13 +65,14 @@ d3.json(queryUrl, function(response) {
     
         var div = L.DomUtil.create("div", "info legend"),
         grades = [0, 0.5, 1.0, 1.5, 2.0, 2.5, 3.0, 3.5]
-        labels = [];
+        labels = ['<strong> THE TITLE </strong>'];
         
         for (var i = 0; i < grades.length; i++) {
             div.innerHTML +=
                 '<li style="background-color:' + getColor(grades[i + 1]) + '"></li> ' +
                 grades[i] + (grades[i + 1] ? '&ndash;' + grades[i + 1] + '<br>' : '+');
         }
+        // div.innerHTML = labels.join('<br>');
         return div;
     
     };
