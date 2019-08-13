@@ -1,6 +1,8 @@
 //  API endpoint to a variable queryUrl
 var queryUrl = "https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/all_week.geojson";
 
+var quakeMarkers = [];
+
 // Perform a GET request to the query URL
 d3.json(queryUrl, function (response) {
 
@@ -35,7 +37,7 @@ d3.json(queryUrl, function (response) {
 
     for (var i = 0; i < response.features.length; i++) {
 
-        var myCircle = L.circle([response.features[i].geometry.coordinates[1], response.features[i].geometry.coordinates[0]], {
+        quakeMarkers.push(L.circle([response.features[i].geometry.coordinates[1], response.features[i].geometry.coordinates[0]], {
             color: getColor(response.features[i].properties.mag),
             fillOpacity: 1.0,
             radius: response.features[i].properties.mag * 25000,
@@ -45,8 +47,10 @@ d3.json(queryUrl, function (response) {
             "</h1> <hr> <h3>Time: " + new Date(response.features[i].properties.time) + "</h3><h3>Magnitude: " + response.features[i].properties.mag + " " +
             response.features[i].properties.magType + "</h3> <h3>Depth: " +
             response.features[i].geometry.coordinates[2] + " km</h3>")
-            .addTo(myMap);
+            .addTo(myMap));
     }
+
+    console.log(quakeMarkers);
     var legend = L.control({ position: "bottomright" });
 
     legend.onAdd = function () {
