@@ -50,7 +50,7 @@ d3.json(queryUrl, function (response) {
             .addTo(myMap));
     }
 
-    console.log(quakeMarkers);
+    // console.log(myCircle);
     var legend = L.control({ position: "bottomright" });
 
     legend.onAdd = function () {
