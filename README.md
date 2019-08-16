@@ -13,5 +13,5 @@ This map includes layer controls, basemaps and overlay maps.
 
 ![Full-Map](Images/FullMap.png)
 ![Satellite](Images/Satellite.png)
-![LightMap](Images/LightMapNoFault.png)
+![LightMap](Images/LightMapNoFaultLines.png)
 ![DarkMap](Images/DarkMapNoEarthquakes.png)
