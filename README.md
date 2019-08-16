@@ -11,4 +11,7 @@ Popups provide additional information about the earthquake when a marker is clic
 
 This map includes layer controls, basemaps and overlay maps. 
 
-![](Images/FullMap.png)
+![Full-Map](Images/FullMap.png)
+![Satellite](Images/Satellite.png)
+![LightMap](Images/LightMapNoFault.png)
+![DarkMap](Images/DarkMapNoEarthquakes.png)
